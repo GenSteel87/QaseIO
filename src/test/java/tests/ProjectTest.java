@@ -12,7 +12,7 @@ public class ProjectTest extends BaseTest {
         String projectDescription = faker.app().name();
 
         loginPage.openPage();
-        loginPage.login("yauhenitest.stalkoutest@gmail.com", "123456Test_1G!");
+        loginPage.login(user, password);
         projectPage.waitTillOpened();
         projectPage.createNewPrivateProject(projectName, projectCode, projectDescription);
         projectPage.projectNameShouldDisplayed(projectName);
@@ -26,7 +26,7 @@ public class ProjectTest extends BaseTest {
         String projectDescription = faker.app().name();
 
         loginPage.openPage();
-        loginPage.login("yauhenitest.stalkoutest@gmail.com", "123456Test_1G!");
+        loginPage.login(user, password);
         projectPage.waitTillOpened();
         projectPage.clickCreateNewProjectButton();
         projectPage.setProjectName(projectName);
@@ -46,7 +46,7 @@ public class ProjectTest extends BaseTest {
         String projectDescription = faker.app().name();
 
         loginPage.openPage();
-        loginPage.login("yauhenitest.stalkoutest@gmail.com", "123456Test_1G!");
+        loginPage.login(user, password);
         projectPage.waitTillOpened();
         projectPage.createNewPrivateProject(projectName, projectCode, projectDescription);
         projectPage.projectNameShouldDisplayed(projectName);
