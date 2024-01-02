@@ -14,6 +14,11 @@ public class ProjectPage {
     final String PROJECT_DESCRIPTION_ID = "description-area";
     final String CREATE_PROJECT_CSS = "[type=submit]";
     final String RADIO_BUTTON_PUBLIC_CSS = "[value=public]";
+    final String CREATE_SUITE_BUTTON_ID = "create-suite-button";
+    final String SUITE_NAME_INPUT_ID = "title";
+    final String SUITE_DESCRIPTION_INPUT = "//label[text()='Description']/parent::div//following-sibling::div/input";
+    final String SUITE_PRECONDITION_INPUT = "//label[text()='Preconditions']/parent::div//following-sibling::div/input";
+    final String SUITE_CREATE_BUTTON_CSS = "[type=submit]";
 
     public void openPage() {
         open("/projects");
@@ -55,6 +60,8 @@ public class ProjectPage {
     public void projectCodeShouldDisplayed(String projectCode) {
         $(By.xpath("//h1[contains(text(),'" + projectCode.toUpperCase() + "')]")).shouldBe(Condition.visible);
     }
+
+    //public void
 
     public void createNewPrivateProject(String projectName, String projectCode, String projectDescription) {
         $(By.id(CREATE_NEW_PROJECT_ID)).click();

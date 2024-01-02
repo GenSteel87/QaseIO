@@ -1,6 +1,10 @@
+package tests;
+
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.github.javafaker.Faker;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequest;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
@@ -10,13 +14,16 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class BaseTest {
+public abstract class BaseTest {
+    WebDriver driver;
 
     LoginPage loginPage;
     ProjectPage projectPage;
     Faker faker;
+    String user;
+    String password;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Настройки браузера")
     public void setUp() {
         Configuration.browser = "chrome";
         Configuration.headless = false;
@@ -28,11 +35,15 @@ public class BaseTest {
         faker = new Faker();
         loginPage = new LoginPage();
         projectPage = new ProjectPage();
+
+        user = System.getProperty("user", "def_user");
+        System.out.println(user);
+        password = System.getProperty("password", "def_password");
+        System.out.println(password);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
     public void close() {
         closeWebDriver();
     }
-
 }
