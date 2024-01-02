@@ -12,8 +12,8 @@ public class LoginPage {
         open("/login");
     }
     public void login(String user, String password) {
-        $(EMAIL_CSS).sendKeys("yauhenitest.stalkoutest@gmail.com");
-        $(PASS_CSS).sendKeys("123456Test_1G!");
+        $(EMAIL_CSS).sendKeys(user);
+        $(PASS_CSS).sendKeys(password);
         $(SUBMIT_CSS).click();
     }
 }
