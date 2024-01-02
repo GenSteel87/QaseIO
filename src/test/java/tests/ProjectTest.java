@@ -1,5 +1,5 @@
-import com.codeborne.selenide.Condition;
-import org.openqa.selenium.By;
+package tests;
+
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -15,8 +15,8 @@ public class ProjectTest extends BaseTest {
         loginPage.login("yauhenitest.stalkoutest@gmail.com", "123456Test_1G!");
         projectPage.waitTillOpened();
         projectPage.createNewPrivateProject(projectName, projectCode, projectDescription);
-        $(By.xpath("//div[contains(text(),'" + projectName + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//h1[contains(text(),'" + projectCode.toUpperCase() + "')]")).shouldBe(Condition.visible);
+        projectPage.projectNameShouldDisplayed(projectName);
+        projectPage.projectCodeShouldDisplayed(projectCode);
     }
 
     @Test
@@ -34,6 +34,21 @@ public class ProjectTest extends BaseTest {
         projectPage.setProjectDescription(projectDescription);
         projectPage.clickRadioButtonPublic();
         projectPage.clickCreateProjectButton();
+        projectPage.projectNameShouldDisplayed(projectName);
+        projectPage.projectCodeShouldDisplayed(projectCode);
+
+    }
+
+    @Test
+    public void suiteShouldBeCreated() {
+        String projectName = faker.app().name();
+        String projectCode = faker.app().name();
+        String projectDescription = faker.app().name();
+
+        loginPage.openPage();
+        loginPage.login("yauhenitest.stalkoutest@gmail.com", "123456Test_1G!");
+        projectPage.waitTillOpened();
+        projectPage.createNewPrivateProject(projectName, projectCode, projectDescription);
         projectPage.projectNameShouldDisplayed(projectName);
         projectPage.projectCodeShouldDisplayed(projectCode);
 
