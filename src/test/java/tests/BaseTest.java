@@ -1,9 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import com.github.javafaker.Faker;
-import org.apache.hc.client5.http.classic.methods.HttpUriRequest;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

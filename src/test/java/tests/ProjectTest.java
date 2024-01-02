@@ -2,8 +2,6 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.$;
-
 public class ProjectTest extends BaseTest {
     @Test
     public void privateProjectShouldBeCreated() {
