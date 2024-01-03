@@ -30,7 +30,7 @@ jobs:
     - name: Run tests in Chrome
       run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
       env:
-        USER: ${{secrets.DEF_USER}}
-        PASSWORD: ${{secrets.DEF_PASSWORD}}
+        USER: ${{secrets.def_user}}
+        PASSWORD: ${{secrets.def_password}}
 
    
