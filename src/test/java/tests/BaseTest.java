@@ -14,7 +14,6 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public abstract class BaseTest {
-    WebDriver driver;
 
     LoginPage loginPage;
     ProjectPage projectPage;
