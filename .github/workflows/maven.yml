@@ -18,7 +18,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      USER: ${{secrets.def_user}}
+      PASSWORD: ${{secrets.def_password}}
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -29,8 +31,6 @@ jobs:
         cache: maven
     - name: Run tests in Chrome
       run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
-      env:
-        USER: ${{secrets.def_user}}
-        PASSWORD: ${{secrets.def_password}}
+
 
    
