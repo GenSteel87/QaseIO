@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -30,6 +31,9 @@ public abstract class BaseTest {
         Configuration.headless = false;
         Configuration.timeout = 10000;
         Configuration.baseUrl = "https://app.qase.io";
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        Configuration.browserCapabilities = options;
         open();
         getWebDriver().manage().window().maximize();
 
