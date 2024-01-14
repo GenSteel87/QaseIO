@@ -34,7 +34,7 @@ jobs:
         browser: chrome
         version: latest
     - name: Run tests in Chrome
-      run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
+      run: mvn clean test -DsuiteXmlFile='src/test/resources/SmokeTest.xml' -Duser=$USER -Dpassword=$PASSWORD
 
 
    
