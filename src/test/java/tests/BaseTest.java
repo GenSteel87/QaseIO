@@ -28,9 +28,6 @@ public abstract class BaseTest {
         Configuration.headless = true;
         Configuration.timeout = 10000;
         Configuration.baseUrl = "https://app.qase.io";
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--disable-dev-shm-usage");
-//        Configuration.browserCapabilities = options;
         open();
         getWebDriver().manage().window().maximize();
 

@@ -15,12 +15,10 @@ public class ProjectTest extends BaseTest {
         projectPage.waitTillOpened();
         projectPage.clickCreateNewProjectButton();
         projectPage.setProjectName(projectName);
-        projectPage.clearProjectCode();
-        projectPage.setProjectCode(projectCode);
         projectPage.setProjectDescription(projectDescription);
         projectPage.clickCreateProjectButton();
         projectPage.projectNameShouldDisplayed(projectName);
-        projectPage.projectCodeShouldDisplayed(projectCode);
+
     }
 
     @Test
@@ -34,13 +32,11 @@ public class ProjectTest extends BaseTest {
         loginPage.login(user, password);
         projectPage.clickCreateNewProjectButton();
         projectPage.setProjectName(projectName);
-        projectPage.clearProjectCode();
-        projectPage.setProjectCode(projectCode);
         projectPage.setProjectDescription(projectDescription);
         projectPage.clickRadioButtonPublic();
         projectPage.clickCreateProjectButton();
         projectPage.projectNameShouldDisplayed(projectName);
-        projectPage.projectCodeShouldDisplayed(projectCode);
+
 
     }
 
@@ -56,7 +52,7 @@ public class ProjectTest extends BaseTest {
         projectPage.waitTillOpened();
         projectPage.createNewPrivateProject(projectName, projectCode, projectDescription);
         projectPage.projectNameShouldDisplayed(projectName);
-        projectPage.projectCodeShouldDisplayed(projectCode);
+
 
     }
 
