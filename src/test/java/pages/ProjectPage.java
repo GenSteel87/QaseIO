@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -42,7 +43,8 @@ public class ProjectPage {
 
     @Step("Clear project code ")
     public void clearProjectCode() {
-        $(By.id(PROJECT_CODE_ID)).clear();
+        $(By.id(PROJECT_CODE_ID)).sendKeys(Keys.CONTROL + "a");
+        $(By.id(PROJECT_CODE_ID)).sendKeys(Keys.DELETE);
     }
 
     @Step("Set project code")

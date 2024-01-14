@@ -8,6 +8,7 @@ import org.testng.annotations.Listeners;
 import pages.LoginPage;
 import pages.ProjectPage;
 import utils.PropertyReader;
+import utils.TestListener;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
@@ -25,7 +26,7 @@ public abstract class BaseTest {
     @BeforeMethod(description = "Set browser")
     public void setUp() {
         Configuration.browser = "chrome";
-        Configuration.headless = true;
+        Configuration.headless = false;
         Configuration.timeout = 10000;
         Configuration.baseUrl = "https://app.qase.io";
         open();
