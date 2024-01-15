@@ -30,6 +30,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - uses: browser-actions/setup-chrome@v1    
     - name: Running BVT
       env:
         USERNAME: ${{ secrets.def_user }}
