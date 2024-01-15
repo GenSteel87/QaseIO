@@ -40,6 +40,7 @@ public abstract class BaseTest {
         System.out.println(user);
         password = System.getProperty("password", PropertyReader.getProperty("def_password"));
         System.out.println(password);
+
     }
 
     @AfterMethod(alwaysRun = true, description = "Close browser")
