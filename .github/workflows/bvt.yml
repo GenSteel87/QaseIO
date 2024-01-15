@@ -30,13 +30,15 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - uses: browser-actions/setup-chrome@v1
-    - run: chrome --version   
+    - uses: abhi1693/setup-browser@v0.3.5
+      with:
+        browser: chrome
+        version: latest   
     - name: Running BVT
+      run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
       env:
         USERNAME: ${{ secrets.def_user }}
         PASSWORD: ${{ secrets.def_password }}
-      run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
     - name: Copy History
       uses: actions/checkout@v2
       if: always()
