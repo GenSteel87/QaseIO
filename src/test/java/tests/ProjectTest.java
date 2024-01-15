@@ -15,7 +15,6 @@ public class ProjectTest extends BaseTest {
         loginPage.openPage();
         loginPage.login(user, password);
         projectPage.waitTillOpened();
-        System.out.println("нажать");
         projectPage.clickCreateNewProjectButton();
         projectPage.setProjectName(projectName);
         projectPage.clearProjectCode();
@@ -35,7 +34,6 @@ public class ProjectTest extends BaseTest {
 
         loginPage.openPage();
         loginPage.login(user, password);
-        System.out.println("нажать");
         projectPage.clickCreateNewProjectButton();
         projectPage.setProjectName(projectName);
         projectPage.clearProjectCode();
