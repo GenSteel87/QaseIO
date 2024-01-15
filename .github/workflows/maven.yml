@@ -42,7 +42,7 @@ jobs:
     env:
       USER: ${{ secrets.def_user }}
       PASSWORD: ${{ secrets.def_password }}
-    - name: Get Allure history
+    - name: Allure history
       uses: actions/checkout@v2
       if: always()
       continue-on-error: true
