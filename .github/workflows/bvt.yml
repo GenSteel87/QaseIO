@@ -36,7 +36,7 @@ jobs:
       env:
         USERNAME: ${{ secrets.def_user }}
         PASSWORD: ${{ secrets.def_password }}
-      run: mvn clean test -DsuiteXmlFile='src/test/resources/SmokeTest.xml' -Duser=$USER -Dpassword=$PASSWORD
+      run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
     - name: Copy History
       uses: actions/checkout@v2
       if: always()
