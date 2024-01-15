@@ -25,12 +25,14 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - uses: actions/upload-artifact@master
-      with:
-        name: allure-results
-        path: allure-results
-        retention-days: 20
         cache: maven
+     - name: Cache Maven repository
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-    
     - uses: abhi1693/setup-browser@v0.3.5
       with:
         browser: chrome
@@ -38,8 +40,26 @@ jobs:
     - name: Run tests in Chrome
       run: mvn clean test -DsuiteXmlFile='src/test/resources/SmokeTest.xml' -Duser=$USER -Dpassword=$PASSWORD
     env:
-      USER: ${{secrets.def_user}}
-      PASSWORD: ${{secrets.def_password}}  
-
-
-   
+      USER: ${{ secrets.def_user }}
+      PASSWORD: ${{ secrets.def_password }}
+    - name: Get Allure history
+      uses: actions/checkout@v2
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+    - name: Allure Report action from marketplace
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: target/allure-results
+        allure_history: allure-history
+        #keep_reports: 20
+    - name: Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history  
