@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Test run
+name: Build Verification Test
 
 on:
   push:
