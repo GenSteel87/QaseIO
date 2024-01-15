@@ -30,13 +30,6 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Cache Maven repository
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
     - name: Running BVT
       env:
         USERNAME: ${{ secrets.def_user }}
