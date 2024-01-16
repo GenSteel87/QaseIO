@@ -38,9 +38,8 @@ public class BaseTest {
         projectPage = new ProjectPage();
 
         user = System.getProperty("user", PropertyReader.getProperty("def_user"));
-        System.out.println(user);
         password = System.getProperty("password", PropertyReader.getProperty("def_password"));
-        System.out.println(password);
+
 
     }
 

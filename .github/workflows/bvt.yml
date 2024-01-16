@@ -34,8 +34,8 @@ jobs:
     - name: Running BVT
       run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD -DsuiteXmlFile='src/test/resources/SmokeTest.xml'
       env:
-        USERNAME: ${{ secrets.def_user }}
-        PASSWORD: ${{ secrets.def_password }}
+        USERNAME: ${{ secrets.DEF_USER }}
+        PASSWORD: ${{ secrets.DEF_PASSWORD }}
     - name: Copy History
       uses: actions/checkout@v2
       if: always()
