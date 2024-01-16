@@ -37,8 +37,8 @@ public class BaseTest {
         loginPage = new LoginPage();
         projectPage = new ProjectPage();
 
-        user = System.getProperty("user", PropertyReader.getProperty("def_user"));
-        password = System.getProperty("password", PropertyReader.getProperty("def_password"));
+        user = System.getProperty("user", PropertyReader.getProperty("DEF_USER"));
+        password = System.getProperty("password", PropertyReader.getProperty("DEF_PASSWORD"));
 
 
     }
