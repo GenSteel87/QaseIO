@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="QASE Smoke Test" thread-count="2" parallel="tests">
+<suite name="QASE Smoke Test" thread-count="1" parallel="tests">
     <test name="Thread #1">
         <classes>
-            <class name="tests.ProjectTest"/>
+            <class name="tests.ProjectTest" />
         </classes>
     </test>
 </suite>
