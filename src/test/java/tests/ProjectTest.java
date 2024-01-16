@@ -1,13 +1,14 @@
 package tests;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.Test;
-
-import static org.checkerframework.checker.units.qual.Prefix.nano;
 
 public class ProjectTest extends BaseTest {
 
     @Test
     public void privateProjectShouldBeCreated() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         String projectName = faker.dog().name();
         String projectCode = faker.dog().name();
         String projectDescription = faker.app().name();
@@ -27,6 +28,7 @@ public class ProjectTest extends BaseTest {
 
     @Test
     public void publicProjectShouldBeCreated() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
 
         String projectName = faker.dog().name();
         String projectCode = faker.dog().name();
