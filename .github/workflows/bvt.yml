@@ -30,9 +30,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - uses: browser-actions/setup-chrome@v1
-      with:
-        chrome-version: 120.0.6099.109
+    - uses: Xotabu4/selenoid-github-action@v2
     - name: Running BVT
       run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD -DsuiteXmlFile='src/test/resources/SmokeTest.xml'
       env:

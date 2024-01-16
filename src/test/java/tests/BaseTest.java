@@ -1,6 +1,8 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideConfig;
 import com.github.javafaker.Faker;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,6 +25,7 @@ public class BaseTest {
 
     @BeforeMethod(description = "Set browser")
     public void setUp() {
+        Configuration.remote = "http://localhost:4444/wd/hub";
         Configuration.browser = "chrome";
         Configuration.headless = true;
         Configuration.timeout = 10000;
