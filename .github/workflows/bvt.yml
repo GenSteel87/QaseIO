@@ -30,6 +30,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - uses: browser-actions/setup-chrome@v1
     - name: Running BVT
       run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD -DsuiteXmlFile='src/test/resources/SmokeTest.xml'
       env:
