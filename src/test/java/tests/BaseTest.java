@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
-public abstract class BaseTest {
+public class BaseTest {
 
     LoginPage loginPage;
     ProjectPage projectPage;
@@ -24,7 +24,7 @@ public abstract class BaseTest {
     @BeforeMethod(description = "Set browser")
     public void setUp() {
         Configuration.browser = "chrome";
-        Configuration.headless = true;
+        Configuration.headless = false;
         Configuration.timeout = 10000;
         Configuration.baseUrl = "https://app.qase.io";
         open();
