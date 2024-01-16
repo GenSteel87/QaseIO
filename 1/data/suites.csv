@@ -1,3 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Mon Jan 15 14:25:42 GMT 2024","Mon Jan 15 14:25:55 GMT 2024","12713","QASE Smoke Test","Thread #1","tests.ProjectTest","tests.ProjectTest","privateProjectShouldBeCreated","privateProjectShouldBeCreated",""
-"failed","Mon Jan 15 14:25:56 GMT 2024","Mon Jan 15 14:26:08 GMT 2024","11927","QASE Smoke Test","Thread #1","tests.ProjectTest","tests.ProjectTest","publicProjectShouldBeCreated","publicProjectShouldBeCreated",""
