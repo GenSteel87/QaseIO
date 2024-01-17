@@ -10,10 +10,10 @@ public class SuiteTest extends BaseTest{
         String projectCode = faker.app().name();
         String projectDescription = faker.app().name();
 
-        loginPage.openPage();
+
         loginPage.login(user, password);
         projectPage.waitTillOpened();
-        projectPage.createNewPrivateProject(projectName, projectCode, projectDescription);
+
         projectPage.projectNameShouldDisplayed(projectName);
     }
 }

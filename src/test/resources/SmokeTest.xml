@@ -3,7 +3,7 @@
 <suite name="QASE Smoke Test" thread-count="1" parallel="tests">
     <test name="Thread #1">
         <classes>
-            <class name="tests.ProjectTest" />
+            <class name="tests.ProjectCreationTest" />
         </classes>
     </test>
 </suite>

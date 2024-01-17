@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -10,14 +11,19 @@ public class LoginPage {
     final String PASS_CSS = "[name=password]";
     final String SUBMIT_CSS = "[type=submit]";
 
-    public void openPage() {
+    private final SelenideElement emailField = $(EMAIL_CSS);
+    private final SelenideElement passwordField = $(PASS_CSS);
+    private final SelenideElement submitButton = $(SUBMIT_CSS);
+    public LoginPage openLoginPage() {
         open("/login");
+        return this;
     }
 
     @Step("Login")
-    public void login(String user, String password) {
-        $(EMAIL_CSS).sendKeys(user);
-        $(PASS_CSS).sendKeys(password);
-        $(SUBMIT_CSS).click();
+    public LoginPage login(String user, String password) {
+        emailField.sendKeys(user);
+        passwordField.sendKeys(password);
+        submitButton.click();
+        return new ProjectsPage();
     }
 }
