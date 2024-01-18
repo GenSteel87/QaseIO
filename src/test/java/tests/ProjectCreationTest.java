@@ -9,37 +9,35 @@ public class ProjectCreationTest extends BaseTest {
 
     @Test(description = "Private project should be created")
     public void privateProjectShouldBeCreated() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         new ProjectsPage()
-                .openProjectsPage()
+                .openLoginPage()
+                .login(user, password)
                 .waitTillOpened()
                 .clickCreateNewProjectButton()
                 .setProjectName(projectName)
                 .setProjectCode(projectCode)
+                .setProjectDescription(projectDescription)
                 .clickCreateProjectButton()
                 .projectNameShouldDisplayed(projectName)
                 .projectCodeShouldDisplayed(projectCode);
 
     }
 
-    @Test
+    @Test(description = "Public project should be created")
     public void publicProjectShouldBeCreated() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-
-        String projectName = faker.dog().name();
-        String projectCode = faker.dog().name();
-        String projectDescription = faker.app().name();
-
-
-        loginPage.login(user, password);
-        projectPage.clickCreateNewProjectButton();
-        projectPage.setProjectName(projectName);
-
-        projectPage.setProjectCode(projectCode);
-        projectPage.setProjectDescription(projectDescription);
-        projectPage.clickRadioButtonPublic();
-        projectPage.clickCreateProjectButton();
-        projectPage.projectNameShouldDisplayed(projectName);
-
-
+        new ProjectsPage()
+                .openLoginPage()
+                .login(user, password)
+                .waitTillOpened()
+                .clickCreateNewProjectButton()
+                .setProjectName(projectName)
+                .setProjectCode(projectCode)
+                .setProjectDescription(projectDescription)
+                .clickRadioButtonPublic()
+                .clickCreateProjectButton()
+                .projectNameShouldDisplayed(projectName)
+                .projectCodeShouldDisplayed(projectCode);
     }
 }

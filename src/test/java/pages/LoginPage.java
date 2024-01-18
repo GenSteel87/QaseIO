@@ -20,7 +20,7 @@ public class LoginPage {
     }
 
     @Step("Login")
-    public LoginPage login(String user, String password) {
+    public ProjectsPage login(String user, String password) {
         emailField.sendKeys(user);
         passwordField.sendKeys(password);
         submitButton.click();

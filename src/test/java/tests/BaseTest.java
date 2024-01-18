@@ -32,7 +32,7 @@ public class BaseTest {
 
     @BeforeMethod(description = "Set browser")
     public void setUp() {
-        Configuration.remote = "http://localhost:4444/wd/hub";
+
         Configuration.browser = "chrome";
         Configuration.headless = false;
         Configuration.timeout = 10000;
@@ -51,9 +51,6 @@ public class BaseTest {
         projectName = faker.lorem().characters(5);
         projectCode = faker.lorem().characters(5);
         projectDescription = faker.lorem().sentence();
-        SelenideLogger.addListener("allure", new AllureSelenide());
-
-        loginPage.login(user, password);
 
     }
 

@@ -38,7 +38,7 @@ public class ProjectsPage extends LoginPage{
     }
     @Step("Click [Create new project] button")
     public ProjectsPage clickCreateNewProjectButton() {
-        createProjectButton.click();
+        createNewProjectButton.click();
         return this;
     }
     @Step("Set project name")
@@ -58,20 +58,20 @@ public class ProjectsPage extends LoginPage{
         projectDescriptionField.sendKeys(projectDescription);
         return this;
     }
-    @Step("Click [Create button]")
-    public ProjectsPage clickCreateProjectButton() {
-       createProjectButton.click();
-       return this;
-    }
     @Step("Click [Public] radio button")
     public ProjectsPage clickRadioButtonPublic() {
         radioButtonPublic.click();
         return this;
     }
+    @Step("Click [Create button]")
+    public ProjectPage clickCreateProjectButton() {
+       createProjectButton.click();
+       return new ProjectPage();
+    }
     @Step("Check project name")
-    public ProjectsPage projectNameShouldDisplayed(String projectName) {
+    public ProjectPage projectNameShouldDisplayed(String projectName) {
         $(By.xpath("//div[contains(text(),'" + projectName + "')]")).shouldBe(Condition.visible);
-        return this;
+        return new ProjectPage();
     }
     @Step("Check project code")
     public ProjectsPage projectCodeShouldDisplayed(String projectCode) {
