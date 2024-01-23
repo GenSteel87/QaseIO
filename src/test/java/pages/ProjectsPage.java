@@ -79,8 +79,22 @@ public class ProjectsPage extends LoginPage{
         $(By.xpath("//h1[contains(text(),'" + projectCode.toUpperCase() + "')]")).getText();
         return this;
     }
-
-
-
+    @Step("Create private project")
+    public ProjectPage createPrivateProject(String projectName, String projectCode) {
+        clickCreateNewProjectButton();
+        setProjectName(projectName);
+        setProjectCode(projectCode);
+        clickCreateProjectButton();
+        return new ProjectPage();
+    }
+    @Step("Create public project")
+    public ProjectPage createPublicProject(String projectName, String projectCode) {
+        clickCreateNewProjectButton();
+        setProjectName(projectName);
+        setProjectCode(projectCode);
+        clickCreateProjectButton();
+        clickRadioButtonPublic();
+        return new ProjectPage();
+    }
 
 }
