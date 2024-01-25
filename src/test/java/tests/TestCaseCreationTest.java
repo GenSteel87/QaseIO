@@ -15,7 +15,7 @@ public class TestCaseCreationTest extends BaseTest{
                 .createSuite(suiteName)
                 .clickAddTestCaseButton()
                 .setTitle(testCaseTitle)
-                .fillAllDropdownsWithFirstValue()
+                .select()
                 .clickSaveButton();
     }
 }

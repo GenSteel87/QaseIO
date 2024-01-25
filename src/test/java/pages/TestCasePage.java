@@ -82,6 +82,12 @@ public class TestCasePage extends ProjectPage {
         }
             return this;
     }
+    @Step("Select try")
+    public TestCasePage select() {
+        $(By.xpath("//label[text()='Priority']")).shouldBe(Condition.visible).click();
+        $(By.xpath("//div[text()='Medium']")).shouldBe(Condition.visible).click();
+        return this;
+    }
     @Step("Click [Save] button")
     public TestCasePage clickSaveButton() {
         saveButton.click();
