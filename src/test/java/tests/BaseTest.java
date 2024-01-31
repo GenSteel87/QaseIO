@@ -43,7 +43,7 @@ public class BaseTest {
     public void setUp() {
 
         Configuration.browser = "chrome";
-        Configuration.headless = false;
+        Configuration.headless = true;
         Configuration.timeout = 30000;
         Configuration.baseUrl = "https://app.qase.io";
         open();

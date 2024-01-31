@@ -19,7 +19,7 @@ public class LoginPage {
         return this;
     }
 
-    @Step("Login")
+    @Step("Login by user name and password")
     public ProjectsPage login(String user, String password) {
         emailField.sendKeys(user);
         passwordField.sendKeys(password);
