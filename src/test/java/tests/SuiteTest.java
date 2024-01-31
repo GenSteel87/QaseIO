@@ -1,19 +1,22 @@
 package tests;
 
 import org.testng.annotations.Test;
+import pages.ProjectPage;
 
 public class SuiteTest extends BaseTest{
-    @Test
+    @Test(description = "Suite should be created")
     public void suiteShouldBeCreated() {
+        new ProjectPage()
+                .openLoginPage()
+                .login(user, password)
+                .createPrivateProject(projectName, projectCode)
+                .clickAddSuiteButton()
+                .setSuiteName(suiteName)
+                .setSuiteDescription(suiteDescription)
+                .setSuitePrecondition(suitePrecondition)
+                .clickCreateButton()
+                .suiteNameShouldDisplayed(suiteName);
 
-        String projectName = faker.app().name();
-        String projectCode = faker.app().name();
-        String projectDescription = faker.app().name();
-
-        loginPage.openPage();
-        loginPage.login(user, password);
-        projectPage.waitTillOpened();
-        projectPage.createNewPrivateProject(projectName, projectCode, projectDescription);
-        projectPage.projectNameShouldDisplayed(projectName);
     }
+
 }
