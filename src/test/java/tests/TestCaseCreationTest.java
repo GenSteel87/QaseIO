@@ -1,6 +1,7 @@
 package tests;
 
 import org.testng.annotations.Test;
+import pages.LoginPage;
 import pages.ProjectPage;
 
 import java.util.HashMap;
@@ -17,7 +18,7 @@ public class TestCaseCreationTest extends BaseTest {
         labelAndOption.put("Behavior", "Negative");
         labelAndOption.put("Automation status", "Manual");
 
-        new ProjectPage()
+        new LoginPage()
                 .openLoginPage()
                 .login(user, password)
                 .createPrivateProject(projectName, projectCode)
