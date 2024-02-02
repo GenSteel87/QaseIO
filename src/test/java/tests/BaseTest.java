@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideConfig;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import io.qameta.allure.selenide.AllureSelenide;
+import lombok.extern.log4j.Log4j;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
@@ -17,7 +18,6 @@ import utils.PropertyReader;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-
 
 public class BaseTest {
 
@@ -41,7 +41,7 @@ public class BaseTest {
 
     @BeforeMethod(description = "Set browser")
     public void setUp() {
-
+        SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.browser = "chrome";
         Configuration.headless = true;
         Configuration.timeout = 30000;
