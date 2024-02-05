@@ -18,6 +18,9 @@ public class ProjectPage extends ProjectsPage {
     final String SUITE_PRECONDITION_INPUT = "//label[text()='Preconditions']/parent::div//following-sibling::div/input";
     final String SUITE_CREATE_BUTTON_CSS = "[type=submit]";
     final String ADD_TEST_CASE_ID = "create-case-button";
+    final String THREE_DOTS_MENU = "(//button/span/i)[3]";
+    final String SETTINGS_BUTTON_CSS = "[aria-label='Settings']";
+    final String EDIT_SUITE_BUTTON = "//i[@class='far fa-pencil']";
 
     private final SelenideElement addSuiteButton = $(By.id(CREATE_SUITE_BUTTON_ID));
     private final SelenideElement suiteNameField = $(By.id(SUITE_NAME_INPUT_ID));
@@ -25,10 +28,18 @@ public class ProjectPage extends ProjectsPage {
     private final SelenideElement suitePreconditionField = $(By.xpath(SUITE_PRECONDITION_INPUT));
     private final SelenideElement createSuiteButton = $(By.cssSelector(SUITE_CREATE_BUTTON_CSS));
     private final SelenideElement addTestCaseButton = $(By.id(ADD_TEST_CASE_ID));
+    private final SelenideElement threeDotsMenu = $(By.xpath(THREE_DOTS_MENU));
+    private final SelenideElement settingsButton = $(By.cssSelector(SETTINGS_BUTTON_CSS));
+    private final SelenideElement editeSuiteButton = $(By.xpath(EDIT_SUITE_BUTTON));
 
     @Step("Open Project page")
     public ProjectPage openPage(String projectName) {
         open("/project/" + projectName.toUpperCase());
+        return new ProjectPage();
+    }
+    @Step("Button [+ New Suite] is visible")
+    public ProjectPage waitTillOpened() {
+        addSuiteButton.shouldBe(Condition.visible);
         return this;
     }
     @Step("Click [+Suite] button")
@@ -38,16 +49,22 @@ public class ProjectPage extends ProjectsPage {
     }
     @Step("Set suite name")
     public ProjectPage setSuiteName(String suiteName) {
+        suiteNameField.sendKeys(Keys.CONTROL + "a");
+        suiteNameField.sendKeys(Keys.DELETE);
         suiteNameField.sendKeys(suiteName);
         return this;
     }
     @Step("Set Description")
     public ProjectPage setSuiteDescription(String suiteDescription) {
+        suiteDescriptionField.sendKeys(Keys.CONTROL + "a");
+        suiteDescriptionField.sendKeys(Keys.DELETE);
         suiteDescriptionField.sendKeys(suiteDescription);
         return this;
     }
     @Step("Set Preconditions")
     public ProjectPage setSuitePrecondition(String suitePrecondition) {
+        suitePreconditionField.sendKeys(Keys.CONTROL + "a");
+        suitePreconditionField.sendKeys(Keys.DELETE);
         suitePreconditionField.sendKeys(suitePrecondition);
         return this;
     }
@@ -76,5 +93,20 @@ public class ProjectPage extends ProjectsPage {
     public TestCasePage clickAddTestCaseButton() {
         addTestCaseButton.click();
         return new TestCasePage();
+    }
+    @Step("Click [...] menu button")
+    public ProjectPage clickThreeDotsMenu() {
+        threeDotsMenu.click();
+        return this;
+    }
+    @Step("Open project settings")
+    public ProjectSettingsPage clickSettingsButton() {
+        settingsButton.click();
+        return new ProjectSettingsPage();
+    }
+    @Step("Click edite suite button")
+    public ProjectPage clickEditeSuiteButton() {
+        editeSuiteButton.click();
+        return this;
     }
 }

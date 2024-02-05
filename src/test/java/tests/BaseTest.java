@@ -9,10 +9,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.LoginPage;
-import pages.ProjectPage;
-import pages.ProjectsPage;
-import pages.TestCasePage;
+import pages.*;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -23,51 +20,34 @@ public class BaseTest {
 
     LoginPage loginPage;
     ProjectPage projectPage;
+    ProjectSettingsPage projectSettingsPage;
     ProjectsPage projectsPage;
     TestCasePage testCasePage;
     Faker faker;
     String user;
     String password;
-    String projectName;
-    String projectCode;
-    String projectDescription;
-    String suiteName;
-    String suiteDescription;
-    String suitePrecondition;
-    String testCaseTitle;
-    String testCaseDescription;
-    String testCasePreConditions;
-    String testCasePostConditions;
+    String TOKEN;
 
     @BeforeMethod(description = "Set browser")
     public void setUp() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.browser = "chrome";
         Configuration.headless = true;
-        Configuration.timeout = 30000;
-        Configuration.baseUrl = "https://app.qase.io";
+        Configuration.timeout = 60000;
+        Configuration.baseUrl = System.getProperty("BASE_URL", PropertyReader.getProperty("BASE_URL"));;
         open();
         getWebDriver().manage().window().maximize();
 
         faker = new Faker();
         loginPage = new LoginPage();
         projectPage = new ProjectPage();
+        projectSettingsPage = new ProjectSettingsPage();
         projectsPage = new ProjectsPage();
         testCasePage = new TestCasePage();
 
         user = System.getProperty("user", PropertyReader.getProperty("DEF_USER"));
         password = System.getProperty("password", PropertyReader.getProperty("DEF_PASSWORD"));
-
-        projectName = faker.lorem().characters(5);
-        projectCode = faker.lorem().characters(5);
-        projectDescription = faker.lorem().sentence();
-        suiteName = faker.lorem().characters(5);
-        suiteDescription = faker.lorem().characters(5);
-        suitePrecondition = faker.lorem().characters(5);
-        testCaseTitle = faker.lorem().characters(5);
-        testCaseDescription = faker.lorem().characters(5);
-        testCasePreConditions = faker.lorem().characters(5);
-        testCasePostConditions = faker.lorem().characters(5);
+        TOKEN = System.getProperty("TOKEN", PropertyReader.getProperty("DEF_TOKEN"));
 
     }
 

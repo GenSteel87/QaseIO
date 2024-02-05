@@ -6,7 +6,7 @@
     </listeners>
     <test name="Thread #1">
         <classes>
-            <class name="tests.ProjectCreationTest" />
+            <class name="tests.ProjectCRUDTest" />
         </classes>
     </test>
     <test name="Thread #2">
