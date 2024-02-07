@@ -20,8 +20,8 @@ public class DataFactory {
         Suite suite = Suite.builder()
                 .projectCode(getRandomProject().getCode())
                 .title(faker.lorem().characters(5))
-                .description(faker.lorem().characters(5)
-                .preconditions(faker.lorem().characters(5)
+                .description(faker.lorem().characters(5))
+                .preconditions(faker.lorem().characters(5))
                 .build();
         return suite;
     }

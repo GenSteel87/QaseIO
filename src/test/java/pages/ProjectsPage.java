@@ -48,6 +48,11 @@ public class ProjectsPage extends LoginPage{
         createProjectButton.shouldBe(Condition.visible);
         return this;
     }
+    @Step("All projects should be visible")
+    public ProjectsPage waitTillAllProjectsAppears() {
+        $(By.xpath("//label[text()='Rows per page:']")).shouldBe(Condition.appear);
+        return this;
+    }
     @Step("Click [Create new project] button")
     public ProjectsPage clickCreateNewProjectButton() {
         createNewProjectButton.click();
