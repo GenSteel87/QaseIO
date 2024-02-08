@@ -16,12 +16,13 @@ public class LoginPage {
     private final SelenideElement emailField = $(EMAIL_CSS);
     private final SelenideElement passwordField = $(PASS_CSS);
     private final SelenideElement submitButton = $(SUBMIT_CSS);
+    @Step("Open Login page")
     public LoginPage openLoginPage() {
         open("/login");
         return this;
     }
 
-    @Step("Login by user name and password")
+    @Step("Login by user name: DEF_USER and password: DEF_PASSWORD")
     public ProjectsPage login(String user, String password) {
         emailField.sendKeys(user);
         passwordField.sendKeys(password);

@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -16,49 +17,90 @@ public class ProjectPage extends ProjectsPage {
     final String SUITE_NAME_INPUT_ID = "title";
     final String SUITE_DESCRIPTION_INPUT = "//label[text()='Description']/parent::div//following-sibling::div/input";
     final String SUITE_PRECONDITION_INPUT = "//label[text()='Preconditions']/parent::div//following-sibling::div/input";
-    final String SUITE_CREATE_BUTTON_CSS = "[type=submit]";
+    final String CREATE_SUITE_BUTTON_CSS = "[type=submit]";
+    final String DELETE_SUITE_BUTTON_CSS = "[type=submit]";
     final String ADD_TEST_CASE_ID = "create-case-button";
+    final String THREE_DOTS_MENU = "(//button/span/i)[3]";
+    final String SETTINGS_BUTTON_CSS = "[aria-label='Settings']";
+    final String EDIT_SUITE_BUTTON = "//i[@class='far fa-pencil']";
+    final String DELETE_SUITE_BUTTON = "//i[@class='far fa-trash']";
+    final String SUITE_SAVE_BUTTON_CSS = "[type='submit']";
+    final String SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully edited.']";
+    final String DELETE_SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully deleted.']";
+    final String DELETE_NOTIFICATION = "//h3[text()='Are you sure that you want to delete the suite \"' and text()='%s']";
+    final String CREATE_QUICK_TEST_BUTTON_CSS = "[placeholder='+ Create quick test']";
 
     private final SelenideElement addSuiteButton = $(By.id(CREATE_SUITE_BUTTON_ID));
     private final SelenideElement suiteNameField = $(By.id(SUITE_NAME_INPUT_ID));
     private final SelenideElement suiteDescriptionField = $(By.xpath(SUITE_DESCRIPTION_INPUT));
     private final SelenideElement suitePreconditionField = $(By.xpath(SUITE_PRECONDITION_INPUT));
-    private final SelenideElement createSuiteButton = $(By.cssSelector(SUITE_CREATE_BUTTON_CSS));
+    private final SelenideElement createSuiteButton = $(By.cssSelector(CREATE_SUITE_BUTTON_CSS));
+    private final SelenideElement confirmDeleteSuiteButton = $(By.cssSelector(DELETE_SUITE_BUTTON_CSS));
     private final SelenideElement addTestCaseButton = $(By.id(ADD_TEST_CASE_ID));
+    private final SelenideElement threeDotsMenu = $(By.xpath(THREE_DOTS_MENU));
+    private final SelenideElement settingsButton = $(By.cssSelector(SETTINGS_BUTTON_CSS));
+    private final SelenideElement editeSuiteButton = $(By.xpath(EDIT_SUITE_BUTTON));
+    private final SelenideElement deleteSuiteButton = $(By.xpath(DELETE_SUITE_BUTTON));
+    private final SelenideElement saveSuiteButton = $(By.cssSelector(SUITE_SAVE_BUTTON_CSS));
+    private final SelenideElement successNotification = $(By.xpath(SUCCESS_NOTIFICATION));
+    private final SelenideElement deleteSuccessNotification = $(By.xpath(DELETE_SUCCESS_NOTIFICATION));
+    private final SelenideElement createQuickTestButton = $(By.cssSelector(CREATE_QUICK_TEST_BUTTON_CSS));
 
     @Step("Open Project page")
     public ProjectPage openPage(String projectName) {
         open("/project/" + projectName.toUpperCase());
+        return new ProjectPage();
+    }
+    @Step("Button [+ New Suite] is visible")
+    public ProjectPage waitTillOpened() {
+        addSuiteButton.shouldBe(Condition.appear);
+        return this;
+    }
+    @Step("Button [+ Create quick test] is appear")
+    public ProjectPage waitTillAllTestCasesAppear() {
+
+        createQuickTestButton.shouldBe(Condition.appear);
         return this;
     }
     @Step("Click [+Suite] button")
     public ProjectPage clickAddSuiteButton(){
-        addSuiteButton.click();
+        addSuiteButton.shouldBe(Condition.visible).click();
         return this;
     }
     @Step("Set suite name")
     public ProjectPage setSuiteName(String suiteName) {
+        suiteNameField.sendKeys(Keys.CONTROL + "a");
+        suiteNameField.sendKeys(Keys.DELETE);
         suiteNameField.sendKeys(suiteName);
         return this;
     }
     @Step("Set Description")
     public ProjectPage setSuiteDescription(String suiteDescription) {
+        suiteDescriptionField.sendKeys(Keys.CONTROL + "a");
+        suiteDescriptionField.sendKeys(Keys.DELETE);
         suiteDescriptionField.sendKeys(suiteDescription);
         return this;
     }
     @Step("Set Preconditions")
     public ProjectPage setSuitePrecondition(String suitePrecondition) {
+        suitePreconditionField.sendKeys(Keys.CONTROL + "a");
+        suitePreconditionField.sendKeys(Keys.DELETE);
         suitePreconditionField.sendKeys(suitePrecondition);
         return this;
     }
     @Step("Click [Create] button")
     public  ProjectPage clickCreateButton() {
-        createSuiteButton.click();
+        createSuiteButton.shouldBe(Condition.visible).click();
         return this;
     }
     @Step("Created suite name should be displayed")
     public ProjectPage suiteNameShouldDisplayed(String suiteName) {
         $(By.cssSelector("[title='" + suiteName + "']")).shouldBe(Condition.visible);
+        return this;
+    }
+    @Step("Deleted suite name should not be displayed")
+    public ProjectPage suiteNameShouldNotBeDisplayed(String suiteName) {
+        $(By.cssSelector("[title='" + suiteName + "']")).shouldBe(Condition.not(Condition.visible));
         return this;
     }
     @Step("Suite description should be displayed")
@@ -74,7 +116,52 @@ public class ProjectPage extends ProjectsPage {
     }
     @Step("Click [+ Case] button")
     public TestCasePage clickAddTestCaseButton() {
-        addTestCaseButton.click();
+        addTestCaseButton.shouldBe(Condition.visible).click();
         return new TestCasePage();
+    }
+    @Step("Click [...] menu button")
+    public ProjectPage clickThreeDotsMenu() {
+        threeDotsMenu.shouldBe(Condition.visible).click();
+        return this;
+    }
+    @Step("Open project settings")
+    public ProjectSettingsPage clickSettingsButton() {
+        settingsButton.shouldBe(Condition.visible).click();
+        return new ProjectSettingsPage();
+    }
+    @Step("Click edite suite button")
+    public ProjectPage clickEditeSuiteButton() {
+        editeSuiteButton.shouldBe(Condition.visible).click();
+        return this;
+    }
+    @Step("Click delete suite button")
+    public ProjectPage clickDeleteSuiteButton() {
+        deleteSuiteButton.shouldBe(Condition.visible).click();
+        return this;
+    }
+    @Step("Click save suite button")
+    public ProjectPage clickSaveSuiteButton() {
+        saveSuiteButton.shouldBe(Condition.visible).click();
+        return this;
+    }
+    @Step("Notification: Suite was successfully edited is displayed")
+    public ProjectPage successNotificationIsDisplayed() {
+        successNotification.shouldBe(Condition.appear);
+        return this;
+    }
+    @Step("Notification: Suite was successfully deleted is displayed")
+    public ProjectPage deleteSuccessNotificationIsDisplayed() {
+        deleteSuccessNotification.shouldBe(Condition.appear);
+        return this;
+    }
+    @Step("Delete suite notification with suite name should be displayed")
+    public ProjectPage deleteSuiteNotificationWithSuiteNameShouldDisplayed(String suiteName) {
+        $(By.xpath(String.format(DELETE_NOTIFICATION, suiteName))).shouldBe(Condition.visible);
+        return this;
+    }
+    @Step("Click confirm delete suite button")
+    public ProjectPage clickConfirmDeleteSuiteButton() {
+        confirmDeleteSuiteButton.shouldBe(Condition.visible).click();
+        return this;
     }
 }

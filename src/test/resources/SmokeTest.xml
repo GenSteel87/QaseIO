@@ -6,12 +6,12 @@
     </listeners>
     <test name="Thread #1">
         <classes>
-            <class name="tests.ProjectCreationTest" />
+            <class name="tests.ProjectCRUDTest" />
         </classes>
     </test>
     <test name="Thread #2">
         <classes>
-            <class name="tests.SuiteTest" />
+            <class name="tests.SuiteCRUDTest" />
         </classes>
     </test>
 </suite>

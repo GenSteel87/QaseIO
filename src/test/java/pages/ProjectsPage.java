@@ -18,6 +18,7 @@ public class ProjectsPage extends LoginPage{
     final String PROJECT_DESCRIPTION_ID = "description-area";
     final String CREATE_PROJECT_CSS = "[type=submit]";
     final String RADIO_BUTTON_PUBLIC_CSS = "[value=public]";
+    final String PROJECT_LINK_BUTTON = "//a[text()='%s']";
 
     private final SelenideElement createNewProjectButton = $(By.id(CREATE_NEW_PROJECT_ID));
     private final SelenideElement projectNaneField = $(By.id(PROJECT_NAME_ID));
@@ -25,15 +26,31 @@ public class ProjectsPage extends LoginPage{
     private final SelenideElement projectDescriptionField = $(By.id(PROJECT_DESCRIPTION_ID));
     private final SelenideElement createProjectButton = $(CREATE_PROJECT_CSS);
     private final SelenideElement radioButtonPublic = $(RADIO_BUTTON_PUBLIC_CSS);
+    private final SelenideElement projectLinkButton = $(By.xpath(PROJECT_LINK_BUTTON));
 
     @Step("Open Projects Page")
     public ProjectsPage openProjectsPage() {
         open("/projects");
         return this;
     }
+    @Step("Open Project page")
+    public ProjectsPage openPage(String projectCode) {
+        open("/project/" + projectCode.toUpperCase());
+        return new ProjectPage();
+    }
+    @Step("Open Project page")
+    public ProjectsPage openPageOfProject(String projectName) {
+        $(By.xpath(String.format(PROJECT_LINK_BUTTON, projectName))).shouldBe(Condition.visible).click();
+        return new ProjectPage();
+    }
     @Step("Create new project is visible")
     public ProjectsPage waitTillOpened() {
         createProjectButton.shouldBe(Condition.visible);
+        return this;
+    }
+    @Step("All projects should be visible")
+    public ProjectsPage waitTillAllProjectsAppears() {
+        $(By.xpath("//label[text()='Rows per page:']")).shouldBe(Condition.appear);
         return this;
     }
     @Step("Click [Create new project] button")
@@ -42,8 +59,10 @@ public class ProjectsPage extends LoginPage{
         return this;
     }
     @Step("Set project name")
-    public ProjectsPage setProjectName(String projectName) {
-        projectNaneField.sendKeys(projectName);
+    public ProjectsPage setProjectName(String title) {
+        projectNaneField.sendKeys(Keys.CONTROL + "a");
+        projectNaneField.sendKeys(Keys.DELETE);
+        projectNaneField.sendKeys(title);
         return this;
     }
     @Step("Set project code")
@@ -73,11 +92,15 @@ public class ProjectsPage extends LoginPage{
         $(By.xpath("//div[contains(text(),'" + projectName + "')]")).shouldBe(Condition.visible);
         return new ProjectPage();
     }
+    @Step("Check project name")
+    public ProjectPage projectNameShouldNotBeDisplayed(String projectName) {
+        $(By.xpath("//div[contains(text(),'" + projectName + "')]")).shouldBe(Condition.not(Condition.visible));
+        return new ProjectPage();
+    }
     @Step("Check project code")
-    public ProjectsPage projectCodeShouldDisplayed(String projectCode) {
+    public ProjectPage projectCodeShouldDisplayed(String projectCode) {
         $(By.xpath("//h1[contains(text(),'" + projectCode.toUpperCase() + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//h1[contains(text(),'" + projectCode.toUpperCase() + "')]")).getText();
-        return this;
+        return new ProjectPage();
     }
     @Step("Create private project")
     public ProjectPage createPrivateProject(String projectName, String projectCode) {
