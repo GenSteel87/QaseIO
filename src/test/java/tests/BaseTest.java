@@ -1,16 +1,9 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideConfig;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
-import helpers.DataFactory;
-import helpers.ProjectAdapter;
 import io.qameta.allure.selenide.AllureSelenide;
-import lombok.extern.log4j.Log4j;
-import models.Project;
-import models.Suite;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
@@ -26,7 +19,7 @@ public class BaseTest {
     ProjectPage projectPage;
     ProjectSettingsPage projectSettingsPage;
     ProjectsPage projectsPage;
-    TestCasePage testCasePage;
+    CasePage casePage;
     Faker faker;
     String user;
     String password;
@@ -47,7 +40,7 @@ public class BaseTest {
         projectPage = new ProjectPage();
         projectSettingsPage = new ProjectSettingsPage();
         projectsPage = new ProjectsPage();
-        testCasePage = new TestCasePage();
+        casePage = new CasePage();
 
         user = System.getProperty("user", PropertyReader.getProperty("DEF_USER"));
         password = System.getProperty("password", PropertyReader.getProperty("DEF_PASSWORD"));

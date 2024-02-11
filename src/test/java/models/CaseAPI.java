@@ -9,7 +9,8 @@ import lombok.Data;
 public class CaseAPI {
     String description;
     String preconditions;
-    String postconditions;
+    @SerializedName("postconditions")
+    String postConditions;
     String title;
     int severity;
     int priority;

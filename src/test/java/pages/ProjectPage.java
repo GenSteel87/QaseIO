@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -25,10 +24,12 @@ public class ProjectPage extends ProjectsPage {
     final String EDIT_SUITE_BUTTON = "//i[@class='far fa-pencil']";
     final String DELETE_SUITE_BUTTON = "//i[@class='far fa-trash']";
     final String SUITE_SAVE_BUTTON_CSS = "[type='submit']";
-    final String SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully edited.']";
-    final String DELETE_SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully deleted.']";
+    final String EDIT_SUITE_SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully edited.']";
+    final String DELETE_SUITE_SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully deleted.']";
     final String DELETE_NOTIFICATION = "//h3[text()='Are you sure that you want to delete the suite \"' and text()='%s']";
     final String CREATE_QUICK_TEST_BUTTON_CSS = "[placeholder='+ Create quick test']";
+    final String CREATE_CASE_SUCCESS_NOTIFICATION = "//span[text()='Test case was created successfully!']";
+    final String CASE_TITLE = "//div[text() ='%s']";
 
     private final SelenideElement addSuiteButton = $(By.id(CREATE_SUITE_BUTTON_ID));
     private final SelenideElement suiteNameField = $(By.id(SUITE_NAME_INPUT_ID));
@@ -42,9 +43,10 @@ public class ProjectPage extends ProjectsPage {
     private final SelenideElement editeSuiteButton = $(By.xpath(EDIT_SUITE_BUTTON));
     private final SelenideElement deleteSuiteButton = $(By.xpath(DELETE_SUITE_BUTTON));
     private final SelenideElement saveSuiteButton = $(By.cssSelector(SUITE_SAVE_BUTTON_CSS));
-    private final SelenideElement successNotification = $(By.xpath(SUCCESS_NOTIFICATION));
-    private final SelenideElement deleteSuccessNotification = $(By.xpath(DELETE_SUCCESS_NOTIFICATION));
+    private final SelenideElement editeSuiteSuccessNotification = $(By.xpath(EDIT_SUITE_SUCCESS_NOTIFICATION));
+    private final SelenideElement deleteSuiteSuccessNotification = $(By.xpath(DELETE_SUITE_SUCCESS_NOTIFICATION));
     private final SelenideElement createQuickTestButton = $(By.cssSelector(CREATE_QUICK_TEST_BUTTON_CSS));
+    private final SelenideElement createCaseSuccessNotification = $(By.xpath(CREATE_CASE_SUCCESS_NOTIFICATION));
 
     @Step("Open Project page")
     public ProjectPage openPage(String projectName) {
@@ -115,9 +117,9 @@ public class ProjectPage extends ProjectsPage {
         return this;
     }
     @Step("Click [+ Case] button")
-    public TestCasePage clickAddTestCaseButton() {
+    public CasePage clickAddTestCaseButton() {
         addTestCaseButton.shouldBe(Condition.visible).click();
-        return new TestCasePage();
+        return new CasePage();
     }
     @Step("Click [...] menu button")
     public ProjectPage clickThreeDotsMenu() {
@@ -145,13 +147,13 @@ public class ProjectPage extends ProjectsPage {
         return this;
     }
     @Step("Notification: Suite was successfully edited is displayed")
-    public ProjectPage successNotificationIsDisplayed() {
-        successNotification.shouldBe(Condition.appear);
+    public ProjectPage editSuiteSuccessNotificationIsDisplayed() {
+        editeSuiteSuccessNotification.shouldBe(Condition.appear);
         return this;
     }
     @Step("Notification: Suite was successfully deleted is displayed")
-    public ProjectPage deleteSuccessNotificationIsDisplayed() {
-        deleteSuccessNotification.shouldBe(Condition.appear);
+    public ProjectPage deleteSuiteSuccessNotificationIsDisplayed() {
+        deleteSuiteSuccessNotification.shouldBe(Condition.appear);
         return this;
     }
     @Step("Delete suite notification with suite name should be displayed")
@@ -162,6 +164,21 @@ public class ProjectPage extends ProjectsPage {
     @Step("Click confirm delete suite button")
     public ProjectPage clickConfirmDeleteSuiteButton() {
         confirmDeleteSuiteButton.shouldBe(Condition.visible).click();
+        return this;
+    }
+    @Step("Notification: Test case was created successfully! should be displayed")
+    public ProjectPage createCaseSuccessNotificationShouldDisplayed() {
+        createCaseSuccessNotification.shouldBe(Condition.visible);
+        return this;
+    }
+    @Step("Case title should be displayed")
+    public ProjectPage caseTitleShouldDisplayed(String caseTitle) {
+        $(By.xpath(String.format(CASE_TITLE, caseTitle))).shouldBe(Condition.visible);
+        return this;
+    }
+    @Step("Click on test case title")
+    public ProjectPage clickTestCaseTitle(String caseTitle) {
+        $(By.xpath(String.format(CASE_TITLE, caseTitle))).shouldBe(Condition.visible).click();
         return this;
     }
 }

@@ -31,7 +31,8 @@ public class SuiteCRUDTest extends BaseTest{
                 setSuiteDescription(suite.getDescription()).
                 setSuitePrecondition(suite.getPreconditions()).
                 clickCreateButton().
-                suiteNameShouldDisplayed(suite.getTitle());
+                suiteNameShouldDisplayed(suite.getTitle()).
+                    editSuiteSuccessNotificationIsDisplayed();
 
     }
 
@@ -61,7 +62,7 @@ public class SuiteCRUDTest extends BaseTest{
                 setSuiteDescription(updatedSuite.getDescription()).
                 setSuitePrecondition(updatedSuite.getPreconditions()).
                 clickSaveSuiteButton().
-                successNotificationIsDisplayed().
+                editSuiteSuccessNotificationIsDisplayed().
                 suiteNameShouldDisplayed(updatedSuite.getTitle()).
                 suiteDescriptionShouldDisplayed(updatedSuite.getDescription());
 
