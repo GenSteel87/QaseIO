@@ -23,7 +23,6 @@ public class BaseTest {
     Faker faker;
     String user;
     String password;
-    public final String BASE_URL = System.getProperty("BASE_URL", PropertyReader.getProperty("BASE_URL"));
 
     @BeforeMethod(description = "Set browser")
     public void setUp() {
@@ -31,7 +30,7 @@ public class BaseTest {
         Configuration.browser = "chrome";
         Configuration.headless = true;
         Configuration.timeout = 90000;
-        Configuration.baseUrl = BASE_URL;
+        Configuration.baseUrl = "https://app.qase.io";
         open();
         getWebDriver().manage().window().maximize();
 
