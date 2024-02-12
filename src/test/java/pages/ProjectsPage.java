@@ -6,7 +6,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -18,7 +17,7 @@ public class ProjectsPage extends LoginPage{
     final String PROJECT_DESCRIPTION_ID = "description-area";
     final String CREATE_PROJECT_CSS = "[type=submit]";
     final String RADIO_BUTTON_PUBLIC_CSS = "[value=public]";
-    final String PROJECT_LINK_BUTTON_TXT = "'%s'";
+    final String PROJECT_LINK_BUTTON = "//a[text()='%s']";
     final String PAGINATION = "//label[text()='Rows per page:']";
 
     private final SelenideElement createNewProjectButton = $(By.id(CREATE_NEW_PROJECT_ID));
@@ -27,7 +26,7 @@ public class ProjectsPage extends LoginPage{
     private final SelenideElement projectDescriptionField = $(By.id(PROJECT_DESCRIPTION_ID));
     private final SelenideElement createProjectButton = $(CREATE_PROJECT_CSS);
     private final SelenideElement radioButtonPublic = $(RADIO_BUTTON_PUBLIC_CSS);
-    //private final SelenideElement projectLinkButton = $(By.xpath(PROJECT_LINK_BUTTON));
+    private final SelenideElement projectLinkButton = $(By.xpath(PROJECT_LINK_BUTTON));
     private final SelenideElement pagination = $(By.xpath(PAGINATION));
 
     @Step("Open Projects Page")
@@ -42,7 +41,7 @@ public class ProjectsPage extends LoginPage{
     }
     @Step("Open Project page")
     public ProjectsPage openPageOfProject(String projectName) {
-        $(byText(String.format(PROJECT_LINK_BUTTON_TXT, projectName))).shouldBe(Condition.visible).click();
+        $(By.xpath(String.format(PROJECT_LINK_BUTTON, projectName))).shouldBe(Condition.visible).click();
         return new ProjectPage();
     }
     @Step("Create new project is visible")
