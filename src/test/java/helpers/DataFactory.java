@@ -2,11 +2,8 @@ package helpers;
 
 import com.github.javafaker.Faker;
 import models.Case;
-import models.CaseAPI;
 import models.Project;
 import models.Suite;
-
-import java.util.HashMap;
 
 public class DataFactory {
     public static Project getRandomProject() {

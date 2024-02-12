@@ -75,8 +75,18 @@ public class CaseCRUDTest extends BaseTest {
                 clickEditTestCase(testCase.getTitle());
         casePage.
                 setTitle(updatedTestCase.getTitle()).
-                setDescription(updatedTestCase.getDescription()).
-                se
-                ;
+                editDescription(testCase.getDescription(), updatedTestCase.getDescription()).
+                editPreConditions(testCase.getPreconditions(), updatedTestCase.getPreconditions()).
+                editPostConditions(testCase.getPostConditions(), updatedTestCase.getPostConditions()).
+                clickSaveButton();
+        projectPage.
+                editCaseSuccessNotificationShouldDisplayed().
+                caseTitleShouldDisplayed(updatedTestCase.getTitle()).
+                clickTestCaseTitle(testCase.getTitle()).
+                clickEditTestCase(testCase.getTitle());
+        casePage.
+                caseDescriptionShouldBeDisplayed(updatedTestCase.getDescription()).
+                casePreConditionsShouldBeDisplayed(updatedTestCase.getPreconditions()).
+                casePostConditionsShouldBeDisplayed(updatedTestCase.getPostConditions());
     }
 }

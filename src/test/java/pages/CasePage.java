@@ -8,27 +8,29 @@ import org.openqa.selenium.Keys;
 
 import java.util.HashMap;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class CasePage extends ProjectPage {
     final String CREATE_TEST_HEADER = "//h1[text()='Create test case']";
     final String TITLE_INPUT_ID = "title";
     final String SELECTOR_STATUS = "//div[text()='Actual']";
-    final String DESCRIPTION_INPUT = "//label[text()='Description']/parent::div//p";
+    final String DESCRIPTION_FIELD = "//label[text()='Description']/parent::div//p";
+    final String FILLED_DESCRIPTION_FIELD = "(//label[text()='Description']/parent::div//p[text()='%s'])[2]";
     final String SELECTOR_LABEL = "//label[text()='%s']/parent::div/div";
     final String SELECTOR_OPTION = "//div[text()='%s']";
     final String SELECTOR_SUITE = "//label[text()='Suite']/parent::div/div";
     final String TO_BE_AUTOMATED_CHECKBOX_ID = "0-isToBeAutomated";
-    final String CONDITION_INPUT = "//label[text()='%s']/parent::div//p";
+    final String PRE_CONDITION_FIELD = "(//label[text()='Pre-conditions']/parent::div//p[text()='%s'])[2]";
     final String SAVE_BUTTON_ID = "save-case";
-    final String PRE_CONDITIONS_FIELD = "//p[contains(text(),'rtfhghf')]";
+    final String POST_CONDITION_FIELD = "(//label[text()='Post-conditions']/parent::div//p[text()='%s'])[2]";
 
     private final SelenideElement addTestCaseButton = $(By.id(ADD_TEST_CASE_ID));
     private final SelenideElement createTestCaseHeader = $(By.xpath(CREATE_TEST_HEADER));
     private final SelenideElement titleField = $(By.id(TITLE_INPUT_ID));
     private final SelenideElement selectorSuite = $(By.xpath(SELECTOR_SUITE));
     private final SelenideElement selectorStatus = $(By.xpath(SELECTOR_STATUS));
-    private final SelenideElement descriptionField = $(By.xpath(DESCRIPTION_INPUT));
+    private final SelenideElement descriptionField = $(By.xpath(DESCRIPTION_FIELD));
     private final SelenideElement selectorLabel = $(By.xpath(SELECTOR_LABEL));
     private final SelenideElement selectorOption = $(By.xpath(SELECTOR_OPTION));
     private final SelenideElement toBeAutomatedCheckbox = $(By.id(TO_BE_AUTOMATED_CHECKBOX_ID));
@@ -56,6 +58,17 @@ public class CasePage extends ProjectPage {
         descriptionField.sendKeys(Keys.CONTROL + "a");
         descriptionField.sendKeys(Keys.DELETE);
         descriptionField.sendKeys(testCaseDescription);
+        return this;
+    }
+    @Step("Edit test case Description")
+    public CasePage editDescription(String testCaseDescription, String updatedTestCaseDescription) {
+        $(By.xpath(String.format(FILLED_DESCRIPTION_FIELD, testCaseDescription))).
+                shouldBe(Condition.visible).setValue(updatedTestCaseDescription);
+        return this;
+    }
+    @Step("Test case Description should be displayed")
+    public CasePage caseDescriptionShouldBeDisplayed(String testCaseDescription) {
+        descriptionField.shouldBe(Condition.visible);
         return this;
     }
     @Step("Select created suite from dropdown")
@@ -91,7 +104,28 @@ public class CasePage extends ProjectPage {
         saveButton.click();
         return this;
     }
-
+    @Step("Edit test case Pre-conditions")
+    public CasePage editPreConditions(String testCasePreConditions, String updatedTestCasePreConditions) {
+        $(By.xpath(String.format(PRE_CONDITION_FIELD, testCasePreConditions))).
+                shouldBe(Condition.visible).setValue(updatedTestCasePreConditions);
+        return this;
+    }
+    @Step("Test case Pre-conditions should be displayed")
+    public CasePage casePreConditionsShouldBeDisplayed(String testCasePreConditions) {
+        $(By.xpath(String.format(PRE_CONDITION_FIELD, testCasePreConditions))).shouldBe(Condition.visible);
+        return this;
+    }
+    @Step("Edit test case Post-conditions")
+    public CasePage editPostConditions(String testCasePostConditions, String updatedTestCasePostConditions) {
+        $(By.xpath(String.format(POST_CONDITION_FIELD, testCasePostConditions))).
+                shouldBe(Condition.visible).setValue(updatedTestCasePostConditions);
+        return this;
+    }
+    @Step("Test case Pre-conditions should be displayed")
+    public CasePage casePostConditionsShouldBeDisplayed(String testCasePostConditions) {
+        $(By.xpath(String.format(POST_CONDITION_FIELD, testCasePostConditions))).shouldBe(Condition.visible);
+        return this;
+    }
 }
 
 

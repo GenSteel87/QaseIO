@@ -1,6 +1,5 @@
 package helpers;
 
-import models.Project;
 import models.Suite;
 
 import static io.restassured.RestAssured.given;

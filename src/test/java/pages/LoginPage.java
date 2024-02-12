@@ -1,9 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import io.netty.util.internal.logging.InternalLogger;
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;

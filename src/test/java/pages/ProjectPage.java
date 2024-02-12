@@ -29,6 +29,7 @@ public class ProjectPage extends ProjectsPage {
     final String DELETE_NOTIFICATION = "//h3[text()='Are you sure that you want to delete the suite \"' and text()='%s']";
     final String CREATE_QUICK_TEST_BUTTON_CSS = "[placeholder='+ Create quick test']";
     final String CREATE_CASE_SUCCESS_NOTIFICATION = "//span[text()='Test case was created successfully!']";
+    final String EDIT_CASE_SUCCESS_NOTIFICATION = "//span[text()='Test case was edited successfully!']";
     final String CASE_TITLE = "//div[text() ='%s']";
     final String EDIT_CASE_BUTTON = "//div[text()='%s']/parent::h1//following-sibling::div//a";
 
@@ -48,6 +49,7 @@ public class ProjectPage extends ProjectsPage {
     private final SelenideElement deleteSuiteSuccessNotification = $(By.xpath(DELETE_SUITE_SUCCESS_NOTIFICATION));
     private final SelenideElement createQuickTestButton = $(By.cssSelector(CREATE_QUICK_TEST_BUTTON_CSS));
     private final SelenideElement createCaseSuccessNotification = $(By.xpath(CREATE_CASE_SUCCESS_NOTIFICATION));
+    private final SelenideElement editCaseSuccessNotification = $(By.xpath(EDIT_CASE_SUCCESS_NOTIFICATION));
 
     @Step("Open Project page")
     public ProjectPage openPage(String projectName) {
@@ -170,6 +172,11 @@ public class ProjectPage extends ProjectsPage {
     @Step("Notification: Test case was created successfully! should be displayed")
     public ProjectPage createCaseSuccessNotificationShouldDisplayed() {
         createCaseSuccessNotification.shouldBe(Condition.visible);
+        return this;
+    }
+    @Step("Notification: Test case was edited successfully! should be displayed")
+    public ProjectPage editCaseSuccessNotificationShouldDisplayed() {
+        editCaseSuccessNotification.shouldBe(Condition.visible);
         return this;
     }
     @Step("Case title should be displayed")

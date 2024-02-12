@@ -1,8 +1,6 @@
 package helpers;
 
 import models.Case;
-import models.CaseAPI;
-import models.Suite;
 
 import static io.restassured.RestAssured.given;
 
@@ -12,9 +10,9 @@ public class CaseAdapter extends ProjectAdapter{
                 .body(testCase)
                 .header("Token", TOKEN)
                 .header("Content-Type", "application/json")
-                .when()
+        .when()
                 .post("https://api.qase.io/v1/case/" + projectCode.toUpperCase())
-                .then()
+        .then()
                 .log().all();
         return testCase.getTitle();
     }
