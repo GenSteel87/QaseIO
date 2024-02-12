@@ -22,7 +22,6 @@ public class ProjectCRUDTest extends BaseTest {
                 .clickCreateProjectButton()
                 .projectNameShouldDisplayed(project.getTitle())
                 .projectCodeShouldDisplayed(project.getCode());
-
     }
 
     @Test(description = "Private project should be updated")
@@ -44,7 +43,6 @@ public class ProjectCRUDTest extends BaseTest {
                 .clickRadioButtonPublic()
                 .clickUpdateSettingsButton()
                 .checkSuccessNotification();
-
     }
     @Test(description = "Private project should be deleted")
     public void privateProjectShouldBeDeleted() {
@@ -61,6 +59,5 @@ public class ProjectCRUDTest extends BaseTest {
                 .clickDeleteProjectButton()
                 .clickConfirmDeleteProjectButton()
                 .projectNameShouldNotBeDisplayed(project.getTitle());
-
     }
 }

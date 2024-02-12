@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import java.util.HashMap;
 
@@ -20,6 +21,7 @@ public class CasePage extends ProjectPage {
     final String TO_BE_AUTOMATED_CHECKBOX_ID = "0-isToBeAutomated";
     final String CONDITION_INPUT = "//label[text()='%s']/parent::div//p";
     final String SAVE_BUTTON_ID = "save-case";
+    final String PRE_CONDITIONS_FIELD = "//p[contains(text(),'rtfhghf')]";
 
     private final SelenideElement addTestCaseButton = $(By.id(ADD_TEST_CASE_ID));
     private final SelenideElement createTestCaseHeader = $(By.xpath(CREATE_TEST_HEADER));
@@ -44,11 +46,15 @@ public class CasePage extends ProjectPage {
     }
     @Step("Set test case title")
     public CasePage setTitle(String testCaseTitle) {
+        titleField.sendKeys(Keys.CONTROL + "a");
+        titleField.sendKeys(Keys.DELETE);
         titleField.sendKeys(testCaseTitle);
         return this;
     }
     @Step("Set test case Description")
     public CasePage setDescription(String testCaseDescription) {
+        descriptionField.sendKeys(Keys.CONTROL + "a");
+        descriptionField.sendKeys(Keys.DELETE);
         descriptionField.sendKeys(testCaseDescription);
         return this;
     }
@@ -64,9 +70,20 @@ public class CasePage extends ProjectPage {
         $(By.xpath(String.format(SELECTOR_OPTION, option))).shouldBe(Condition.visible).click();
         return this;
     }
+    @Step("Check selected option from dropdown")
+    public CasePage checkSelectedOptionFromDropDown(String label, String option) {
+        $(By.xpath(String.format(SELECTOR_LABEL, label))).shouldBe(Condition.visible);
+        $(By.xpath(String.format(SELECTOR_OPTION, option))).shouldBe(Condition.visible);
+        return this;
+    }
     @Step("Select option from dropdown")
     public CasePage selectOptionFromDropDownAll(HashMap<String, String> labelAndOption) {
         labelAndOption.forEach((key, value)->this.selectOptionFromDropDown(key,value));
+        return this;
+    }
+    @Step("Check selected option from all dropdowns")
+    public CasePage checkSelectOptionFromDropDownAll(HashMap<String, String> labelAndOption) {
+        labelAndOption.forEach((key, value)->this.checkSelectedOptionFromDropDown(key,value));
         return this;
     }
     @Step("Click [Save] button")

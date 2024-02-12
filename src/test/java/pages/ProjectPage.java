@@ -30,6 +30,7 @@ public class ProjectPage extends ProjectsPage {
     final String CREATE_QUICK_TEST_BUTTON_CSS = "[placeholder='+ Create quick test']";
     final String CREATE_CASE_SUCCESS_NOTIFICATION = "//span[text()='Test case was created successfully!']";
     final String CASE_TITLE = "//div[text() ='%s']";
+    final String EDIT_CASE_BUTTON = "//div[text()='%s']/parent::h1//following-sibling::div//a";
 
     private final SelenideElement addSuiteButton = $(By.id(CREATE_SUITE_BUTTON_ID));
     private final SelenideElement suiteNameField = $(By.id(SUITE_NAME_INPUT_ID));
@@ -180,5 +181,10 @@ public class ProjectPage extends ProjectsPage {
     public ProjectPage clickTestCaseTitle(String caseTitle) {
         $(By.xpath(String.format(CASE_TITLE, caseTitle))).shouldBe(Condition.visible).click();
         return this;
+    }
+    @Step("Click on edit test case button")
+    public ProjectPage clickEditTestCase(String caseTitle) {
+        $(By.xpath(String.format(EDIT_CASE_BUTTON, caseTitle))).shouldBe(Condition.visible).click();
+        return new CasePage();
     }
 }

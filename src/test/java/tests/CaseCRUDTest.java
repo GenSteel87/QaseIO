@@ -1,5 +1,6 @@
 package tests;
 
+import helpers.CaseAdapter;
 import helpers.DataFactory;
 import helpers.ProjectAdapter;
 import helpers.SuiteAdapter;
@@ -23,8 +24,6 @@ public class CaseCRUDTest extends BaseTest {
         SuiteAdapter suiteAdapter = new SuiteAdapter();
         suiteAdapter.create(suite, project.getCode());
 
-
-
         loginPage.
                 openLoginPage().
                 login(user, password);
@@ -44,6 +43,40 @@ public class CaseCRUDTest extends BaseTest {
                 clickSaveButton();
         projectPage.
                 createCaseSuccessNotificationShouldDisplayed().
-                caseTitleShouldDisplayed(testCase.getTitle());
+                caseTitleShouldDisplayed(testCase.getTitle()).
+                clickTestCaseTitle(testCase.getTitle()).
+                clickEditTestCase(testCase.getTitle());
+        casePage.checkSelectOptionFromDropDownAll(fieldValues);
+    }
+
+    @Test(description = "Test case should be edited")
+    public void testCaseShouldBeEdited() {
+        Project project = DataFactory.getRandomProject();
+        Case testCase = DataFactory.getRandomCaseByAPI(project.getCode());
+        Case updatedTestCase = DataFactory.getRandomCaseWithOutSuite(project.getCode());
+
+        ProjectAdapter projectAdapter = new ProjectAdapter();
+        projectAdapter.create(project);
+        CaseAdapter caseAdapter = new CaseAdapter();
+        caseAdapter.create(testCase, project.getCode());
+
+        loginPage.
+                openLoginPage().
+                login(user, password);
+        projectsPage.
+                waitTillOpened().
+                waitTillAllProjectsAppears().
+                openPageOfProject(project.getTitle());
+        projectPage.
+                waitTillAllTestCasesAppear().
+                waitTillOpened().
+                caseTitleShouldDisplayed(testCase.getTitle()).
+                clickTestCaseTitle(testCase.getTitle()).
+                clickEditTestCase(testCase.getTitle());
+        casePage.
+                setTitle(updatedTestCase.getTitle()).
+                setDescription(updatedTestCase.getDescription()).
+                se
+                ;
     }
 }

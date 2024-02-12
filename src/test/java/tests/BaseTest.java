@@ -27,7 +27,7 @@ public class BaseTest {
 
     @BeforeMethod(description = "Set browser")
     public void setUp() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+        SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true));
         Configuration.browser = "chrome";
         Configuration.headless = true;
         Configuration.timeout = 90000;
