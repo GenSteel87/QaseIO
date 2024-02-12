@@ -23,7 +23,7 @@ public class BaseTest {
     Faker faker;
     String user;
     String password;
-    String TOKEN;
+    public final String BASE_URL = System.getProperty("BASE_URL", PropertyReader.getProperty("BASE_URL"));
 
     @BeforeMethod(description = "Set browser")
     public void setUp() {
@@ -31,7 +31,7 @@ public class BaseTest {
         Configuration.browser = "chrome";
         Configuration.headless = true;
         Configuration.timeout = 90000;
-        Configuration.baseUrl = System.getProperty("BASE_URL", PropertyReader.getProperty("BASE_URL"));;
+        Configuration.baseUrl = BASE_URL;
         open();
         getWebDriver().manage().window().maximize();
 
@@ -44,7 +44,6 @@ public class BaseTest {
 
         user = System.getProperty("user", PropertyReader.getProperty("DEF_USER"));
         password = System.getProperty("password", PropertyReader.getProperty("DEF_PASSWORD"));
-        TOKEN = System.getProperty("TOKEN", PropertyReader.getProperty("DEF_TOKEN"));
 
     }
 
