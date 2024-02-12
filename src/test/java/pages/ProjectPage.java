@@ -25,6 +25,7 @@ public class ProjectPage extends ProjectsPage {
     final String DELETE_SUITE_BUTTON = "//i[@class='far fa-trash']";
     final String SUITE_SAVE_BUTTON_CSS = "[type='submit']";
     final String EDIT_SUITE_SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully edited.']";
+    final String CREATE_SUITE_SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully created.']";
     final String DELETE_SUITE_SUCCESS_NOTIFICATION = "//span[text()='Suite was successfully deleted.']";
     final String DELETE_NOTIFICATION = "//h3[text()='Are you sure that you want to delete the suite \"' and text()='%s']";
     final String CREATE_QUICK_TEST_BUTTON_CSS = "[placeholder='+ Create quick test']";
@@ -46,6 +47,7 @@ public class ProjectPage extends ProjectsPage {
     private final SelenideElement deleteSuiteButton = $(By.xpath(DELETE_SUITE_BUTTON));
     private final SelenideElement saveSuiteButton = $(By.cssSelector(SUITE_SAVE_BUTTON_CSS));
     private final SelenideElement editeSuiteSuccessNotification = $(By.xpath(EDIT_SUITE_SUCCESS_NOTIFICATION));
+    private final SelenideElement createSuiteSuccessNotification = $(By.xpath(CREATE_SUITE_SUCCESS_NOTIFICATION));
     private final SelenideElement deleteSuiteSuccessNotification = $(By.xpath(DELETE_SUITE_SUCCESS_NOTIFICATION));
     private final SelenideElement createQuickTestButton = $(By.cssSelector(CREATE_QUICK_TEST_BUTTON_CSS));
     private final SelenideElement createCaseSuccessNotification = $(By.xpath(CREATE_CASE_SUCCESS_NOTIFICATION));
@@ -152,6 +154,11 @@ public class ProjectPage extends ProjectsPage {
     @Step("Notification: Suite was successfully edited is displayed")
     public ProjectPage editSuiteSuccessNotificationIsDisplayed() {
         editeSuiteSuccessNotification.shouldBe(Condition.appear);
+        return this;
+    }
+    @Step("Notification: Suite was successfully created is displayed")
+    public ProjectPage createSuiteSuccessNotificationIsDisplayed() {
+        createSuiteSuccessNotification.shouldBe(Condition.appear);
         return this;
     }
     @Step("Notification: Suite was successfully deleted is displayed")

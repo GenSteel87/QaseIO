@@ -24,7 +24,6 @@ public class SuiteCRUDTest extends BaseTest{
                 waitTillAllProjectsAppears().
                 openPageOfProject(project.getTitle());
             projectPage.
-                waitTillAllTestCasesAppear().
                 waitTillOpened().
                 clickAddSuiteButton().
                 setSuiteName(suite.getTitle()).
@@ -32,7 +31,7 @@ public class SuiteCRUDTest extends BaseTest{
                 setSuitePrecondition(suite.getPreconditions()).
                 clickCreateButton().
                 suiteNameShouldDisplayed(suite.getTitle()).
-                editSuiteSuccessNotificationIsDisplayed();
+                createSuiteSuccessNotificationIsDisplayed();
     }
 
     @Test(description = "Suite should be Updated")
@@ -54,7 +53,6 @@ public class SuiteCRUDTest extends BaseTest{
                 waitTillAllProjectsAppears().
                 openPageOfProject(project.getTitle());
         projectPage.
-                waitTillAllTestCasesAppear().
                 waitTillOpened().
                 clickEditeSuiteButton().
                 setSuiteName(updatedSuite.getTitle()).
@@ -84,7 +82,6 @@ public class SuiteCRUDTest extends BaseTest{
                 waitTillAllProjectsAppears().
                 openPageOfProject(project.getTitle());
         projectPage.
-                waitTillAllTestCasesAppear().
                 waitTillOpened().
                 clickDeleteSuiteButton().
                 deleteSuiteNotificationWithSuiteNameShouldDisplayed(suite.getTitle()).
