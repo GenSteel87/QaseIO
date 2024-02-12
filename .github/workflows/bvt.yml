@@ -32,7 +32,7 @@ jobs:
         cache: maven
     - uses: Xotabu4/selenoid-github-action@v2
     - name: Running BVT
-      run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD -Dtoken=$TOKEN -DsuiteXmlFile='src/test/resources/SmokeTest.xml'
+      run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD -DTOKEN=$TOKEN -DsuiteXmlFile='src/test/resources/SmokeTest.xml'
       env:
         USER: ${{ secrets.DEF_USER }}
         PASSWORD: ${{ secrets.DEF_PASSWORD }}
