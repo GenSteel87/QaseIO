@@ -36,7 +36,7 @@ jobs:
       env:
         USER: ${{ secrets.DEF_USER }}
         PASSWORD: ${{ secrets.DEF_PASSWORD }}
-        TOKEN: ${{ secrets.TOKEN }}
+        TOKEN: ${{ secrets.DEF_TOKEN }}
     - name: Copy History
       uses: actions/checkout@v2
       if: always()
