@@ -36,7 +36,6 @@ jobs:
       env:
         USER: ${{ secrets.DEF_USER }}
         PASSWORD: ${{ secrets.DEF_PASSWORD }}
-        BASE_URL: ${{ secrets.BASE_URL }}
     - name: Copy History
       uses: actions/checkout@v2
       if: always()
