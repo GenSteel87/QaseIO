@@ -63,12 +63,6 @@ public class ProjectPage extends ProjectsPage {
         addSuiteButton.shouldBe(Condition.appear);
         return this;
     }
-    @Step("Button [+ Create quick test] is appear")
-    public ProjectPage waitTillAllTestCasesAppear() {
-
-        createQuickTestButton.shouldBe(Condition.appear);
-        return this;
-    }
     @Step("Click [+Suite] button")
     public ProjectPage clickAddSuiteButton(){
         addSuiteButton.shouldBe(Condition.visible).click();

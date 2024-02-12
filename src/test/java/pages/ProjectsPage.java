@@ -18,6 +18,7 @@ public class ProjectsPage extends LoginPage{
     final String CREATE_PROJECT_CSS = "[type=submit]";
     final String RADIO_BUTTON_PUBLIC_CSS = "[value=public]";
     final String PROJECT_LINK_BUTTON = "//a[text()='%s']";
+    final String PAGINATION = "//label[text()='Rows per page:']";
 
     private final SelenideElement createNewProjectButton = $(By.id(CREATE_NEW_PROJECT_ID));
     private final SelenideElement projectNaneField = $(By.id(PROJECT_NAME_ID));
@@ -26,6 +27,7 @@ public class ProjectsPage extends LoginPage{
     private final SelenideElement createProjectButton = $(CREATE_PROJECT_CSS);
     private final SelenideElement radioButtonPublic = $(RADIO_BUTTON_PUBLIC_CSS);
     private final SelenideElement projectLinkButton = $(By.xpath(PROJECT_LINK_BUTTON));
+    private final SelenideElement pagination = $(By.xpath(PAGINATION));
 
     @Step("Open Projects Page")
     public ProjectsPage openProjectsPage() {
@@ -49,7 +51,7 @@ public class ProjectsPage extends LoginPage{
     }
     @Step("All projects should be visible")
     public ProjectsPage waitTillAllProjectsAppears() {
-        $(By.xpath("//label[text()='Rows per page:']")).shouldBe(Condition.appear);
+        pagination.shouldBe(Condition.appear);
         return this;
     }
     @Step("Click [Create new project] button")
