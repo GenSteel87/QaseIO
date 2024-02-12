@@ -6,7 +6,7 @@ import utils.PropertyReader;
 import static io.restassured.RestAssured.given;
 
 public class ProjectAdapter {
-    private final String TOKEN = System.getProperty("TOKEN", PropertyReader.getProperty("DEF_TOKEN"));
+    public final String TOKEN = System.getProperty("TOKEN", PropertyReader.getProperty("DEF_TOKEN"));
     public String create(Project project) {
         given()
                 .body(project)

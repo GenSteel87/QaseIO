@@ -1,9 +1,7 @@
 package tests;
 
-import com.google.gson.Gson;
 import helpers.DataFactory;
 import models.Project;
-import models.VacancyResponse;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;

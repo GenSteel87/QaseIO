@@ -31,8 +31,8 @@ public class SuiteCRUDTest extends BaseTest{
                 setSuiteDescription(suite.getDescription()).
                 setSuitePrecondition(suite.getPreconditions()).
                 clickCreateButton().
-                suiteNameShouldDisplayed(suite.getTitle());
-
+                suiteNameShouldDisplayed(suite.getTitle()).
+                editSuiteSuccessNotificationIsDisplayed();
     }
 
     @Test(description = "Suite should be Updated")
@@ -61,10 +61,9 @@ public class SuiteCRUDTest extends BaseTest{
                 setSuiteDescription(updatedSuite.getDescription()).
                 setSuitePrecondition(updatedSuite.getPreconditions()).
                 clickSaveSuiteButton().
-                successNotificationIsDisplayed().
+                editSuiteSuccessNotificationIsDisplayed().
                 suiteNameShouldDisplayed(updatedSuite.getTitle()).
                 suiteDescriptionShouldDisplayed(updatedSuite.getDescription());
-
     }
 
     @Test(description = "Suite should be deleted")
@@ -91,7 +90,5 @@ public class SuiteCRUDTest extends BaseTest{
                 deleteSuiteNotificationWithSuiteNameShouldDisplayed(suite.getTitle()).
                 clickConfirmDeleteSuiteButton().
                 suiteNameShouldNotBeDisplayed(suite.getTitle());
-
     }
-
 }
