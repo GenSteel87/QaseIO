@@ -29,7 +29,7 @@ public class CaseCRUDTest extends BaseTest {
                 login(user, password);
         projectsPage.
                 waitTillOpened().
-                waitTillAllProjectsAppears().
+                waitTillPaginationAppears().
                 openPageOfProject(project.getTitle());
         projectPage.
                 waitTillAllTestCasesAppear().
@@ -65,7 +65,7 @@ public class CaseCRUDTest extends BaseTest {
                 login(user, password);
         projectsPage.
                 waitTillOpened().
-                waitTillAllProjectsAppears().
+                waitTillPaginationAppears().
                 openPageOfProject(project.getTitle());
         projectPage.
                 waitTillAllTestCasesAppear().
