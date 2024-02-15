@@ -23,6 +23,7 @@ public class BaseTest {
     Faker faker;
     String user;
     String password;
+    public final String token = System.getProperty("TOKEN", PropertyReader.getProperty("DEF_TOKEN"));
 
     @BeforeMethod(description = "Set browser")
     public void setUp() {

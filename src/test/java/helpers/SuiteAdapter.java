@@ -8,12 +8,13 @@ public class SuiteAdapter extends ProjectAdapter{
     public String create(Suite suite, String projectCode) {
         given()
                 .body(suite)
-                .header("Token", TOKEN)
+                .header("Token", token)
                 .header("Content-Type", "application/json")
         .when()
                 .post("https://api.qase.io/v1/suite/" + projectCode.toUpperCase())
         .then()
-                .log().all();
+                .log().all()
+                .statusCode(200);
         return suite.getTitle();
     }
 }
