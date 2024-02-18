@@ -19,7 +19,7 @@ public class ProjectsPage extends LoginPage{
     final String PROJECT_DESCRIPTION_ID = "description-area";
     final String CREATE_PROJECT_CSS = "[type=submit]";
     final String RADIO_BUTTON_PUBLIC_CSS = "[value=public]";
-    final String PROJECT_LINK_BUTTON_CSS = "[alt='/s']";
+    final String PROJECT_LINK_BUTTON = "//*[contains(text(), '/s')]";
     final String PAGINATION = "//label[text()='Rows per page:']";
     final String THREE_DOTS_BUTTON_CSS = "[data-icon='ellipsis']";
     final String REMOVE_BUTTON = "//button[text()='Remove']";
@@ -51,7 +51,7 @@ public class ProjectsPage extends LoginPage{
     @Step("Open Project page: '{projectName}'")
     public ProjectsPage openPageOfProject(String projectName) {
         log.info("Open Project page: '{}'", projectName);
-        $(By.cssSelector(String.format(PROJECT_LINK_BUTTON_CSS, projectName))).shouldBe(Condition.visible).click();
+        $(By.xpath(String.format(PROJECT_LINK_BUTTON, projectName))).shouldBe(Condition.visible).click();
         return new ProjectPage();
     }
     @Step("Create new project is visible")
