@@ -1,10 +1,12 @@
 package helpers;
 
+import io.qameta.allure.Step;
 import models.Suite;
 
 import static io.restassured.RestAssured.given;
 
 public class SuiteAdapter extends ProjectAdapter{
+    @Step("Create suite by API")
     public String create(Suite suite, String projectCode) {
         given()
                 .body(suite)

@@ -3,15 +3,18 @@
 <suite name="QASE Smoke Test" thread-count="1" parallel="tests">
     <listeners>
         <listener class-name="utils.TestListener"></listener>
+        <listener class-name="utils.AnnotationTransformer"></listener>
     </listeners>
     <test name="Thread #1">
         <classes>
+            <class name="tests.CleanUpTest" />
             <class name="tests.ProjectCRUDTest" />
         </classes>
     </test>
     <test name="Thread #2">
         <classes>
             <class name="tests.SuiteCRUDTest" />
+            <class name="tests.CaseCRUDTest" />
         </classes>
     </test>
 </suite>
