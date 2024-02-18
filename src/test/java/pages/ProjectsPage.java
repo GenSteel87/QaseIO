@@ -21,7 +21,7 @@ public class ProjectsPage extends LoginPage{
     final String RADIO_BUTTON_PUBLIC_CSS = "[value=public]";
     final String PROJECT_LINK_BUTTON = "//*[contains(text(), '/s')]";
     final String PAGINATION = "//label[text()='Rows per page:']";
-    final String THREE_DOTS_BUTTON = "[data-icon='ellipsis']";
+    final String THREE_DOTS_BUTTON_CSS = "[data-icon='ellipsis']";
     final String REMOVE_BUTTON = "//button[text()='Remove']";
     final String DELETE_PROJECT_BUTTON = "//button/span[text()='Delete project']";
 
