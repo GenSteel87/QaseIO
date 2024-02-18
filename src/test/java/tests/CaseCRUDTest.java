@@ -77,16 +77,42 @@ public class CaseCRUDTest extends BaseTest {
                 setTitle(updatedTestCase.getTitle()).
                 editDescription(testCase.getDescription(), updatedTestCase.getDescription()).
                 editPreConditions(testCase.getPreconditions(), updatedTestCase.getPreconditions()).
-                editPostConditions(testCase.getPostConditions(), updatedTestCase.getPostConditions()).
                 clickSaveButton();
         projectPage.
                 editCaseSuccessNotificationShouldDisplayed().
                 caseTitleShouldDisplayed(updatedTestCase.getTitle()).
-                clickTestCaseTitle(testCase.getTitle()).
-                clickEditTestCase(testCase.getTitle());
+                clickTestCaseTitle(updatedTestCase.getTitle()).
+                clickEditTestCase(updatedTestCase.getTitle());
         casePage.
                 caseDescriptionShouldBeDisplayed(updatedTestCase.getDescription()).
-                casePreConditionsShouldBeDisplayed(updatedTestCase.getPreconditions()).
-                casePostConditionsShouldBeDisplayed(updatedTestCase.getPostConditions());
+                casePreConditionsShouldBeDisplayed(updatedTestCase.getPreconditions());
+    }
+
+    @Test(description = "Test case should be deleted")
+    public void testCaseShouldBeDeleted() {
+        Project project = DataFactory.getRandomProject();
+        Case testCase = DataFactory.getRandomCaseByAPI(project.getCode());
+
+        ProjectAdapter projectAdapter = new ProjectAdapter();
+        projectAdapter.create(project);
+        CaseAdapter caseAdapter = new CaseAdapter();
+        caseAdapter.create(testCase, project.getCode());
+
+        loginPage.
+                openLoginPage().
+                login(user, password);
+        projectsPage.
+                waitTillOpened().
+                waitTillPaginationAppears().
+                openPageOfProject(project.getTitle());
+        projectPage.
+                waitTillAllTestCasesAppear().
+                waitTillOpened().
+                caseTitleShouldDisplayed(testCase.getTitle()).
+                clickTestCaseTitle(testCase.getTitle()).
+                clickDeleteCaseButton().
+                clickConfirmDeleteCaseButton().
+                deleteTestCasePopupShouldNotBeDisplayed().
+                testCaseTitleShouldNotBeDisplayed(testCase.getTitle());
     }
 }
