@@ -48,8 +48,8 @@ public class ProjectsPage extends LoginPage{
         open("/project/" + projectCode.toUpperCase());
         return new ProjectPage();
     }
-    @Step("Open Project page: '{projectName}'")
-    public ProjectsPage openPageOfProject(String projectName) {
+    @Step("Click on name of a project: '{projectName}'")
+    public ProjectsPage clickOnNameOfProject(String projectName) {
         log.info("Open Project page: '{}'", projectName);
         $(By.xpath("//*[contains(text(), '" + projectName + "')]" )).shouldBe(Condition.visible).click();
         return new ProjectPage();

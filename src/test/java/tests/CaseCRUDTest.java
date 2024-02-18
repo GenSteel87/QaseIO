@@ -30,7 +30,7 @@ public class CaseCRUDTest extends BaseTest {
         projectsPage.
                 waitTillOpened().
                 waitTillPaginationAppears().
-                openPageOfProject(project.getTitle());
+                clickOnNameOfProject(project.getTitle());
         projectPage.
                 waitTillAllTestCasesAppear().
                 waitTillOpened().
@@ -66,7 +66,7 @@ public class CaseCRUDTest extends BaseTest {
         projectsPage.
                 waitTillOpened().
                 waitTillPaginationAppears().
-                openPageOfProject(project.getTitle());
+                clickOnNameOfProject(project.getTitle());
         projectPage.
                 waitTillAllTestCasesAppear().
                 waitTillOpened().
@@ -104,7 +104,7 @@ public class CaseCRUDTest extends BaseTest {
         projectsPage.
                 waitTillOpened().
                 waitTillPaginationAppears().
-                openPageOfProject(project.getTitle());
+                clickOnNameOfProject(project.getTitle());
         projectPage.
                 waitTillAllTestCasesAppear().
                 waitTillOpened().
