@@ -51,7 +51,7 @@ public class ProjectsPage extends LoginPage{
     @Step("Open Project page: '{projectName}'")
     public ProjectsPage openPageOfProject(String projectName) {
         log.info("Open Project page: '{}'", projectName);
-        $(By.xpath(String.format(PROJECT_LINK_BUTTON, projectName))).shouldBe(Condition.visible).click();
+        $(By.xpath("//*[contains(text(), '" + projectName + "')]" )).shouldBe(Condition.visible).click();
         return new ProjectPage();
     }
     @Step("Create new project is visible")
