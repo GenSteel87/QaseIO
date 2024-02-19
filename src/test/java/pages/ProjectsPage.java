@@ -50,7 +50,7 @@ public class ProjectsPage extends LoginPage{
     }
     @Step("Click on name of a project: '{projectName}'")
     public ProjectsPage clickOnNameOfProject(String projectName) {
-        log.info("Open Project page: '{}'", projectName);
+        log.info("Click on name of a project: '{}'", projectName);
         $(By.xpath("//*[contains(text(), '" + projectName + "')]" )).shouldBe(Condition.visible).click();
         return new ProjectPage();
     }

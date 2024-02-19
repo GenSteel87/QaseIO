@@ -50,9 +50,9 @@ public class CasePage extends ProjectPage {
         createTestCaseHeader.shouldBe(Condition.visible);
         return this;
     }
-    @Step("Set test case title: ''{testCaseTitle}")
+    @Step("Set test case title: '{testCaseTitle}'")
     public CasePage setTitle(String testCaseTitle) {
-        log.info("Set test case title: ''{testCaseTitle}");
+        log.info("Set test case title: '{testCaseTitle}'");
         titleField.sendKeys(Keys.CONTROL + "a");
         titleField.sendKeys(Keys.DELETE);
         titleField.sendKeys(testCaseTitle);
