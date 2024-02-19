@@ -28,6 +28,7 @@ public class BaseTest {
     Faker faker;
     String user;
     String password;
+
     @BeforeMethod(description = "Set browser")
     public void setUp() {
         SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true));
