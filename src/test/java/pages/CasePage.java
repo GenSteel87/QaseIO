@@ -89,7 +89,7 @@ public class CasePage extends ProjectPage {
     }
     @Step("Select option: '{option}' from dropdown: '{label}'")
     public CasePage selectOptionFromDropDown(String label, String option) {
-        log.info("Select option: '{option}' from dropdown: '{label}'");
+        log.info("Select option: '{}' from dropdown: '{}'", option, label);
         $(By.xpath(String.format(SELECTOR_LABEL, label))).shouldBe(Condition.visible).click();
         $(By.xpath(String.format(SELECTOR_OPTION, option))).shouldBe(Condition.visible).click();
         return this;
